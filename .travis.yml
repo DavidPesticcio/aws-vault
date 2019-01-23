@@ -7,8 +7,8 @@ os:
   - linux
   - osx
 
-before_install:
-  - go get -u github.com/kardianos/govendor
+env:
+  - GO111MODULE=on
 
 script:
   - diff -u <(echo -n) <(gofmt -d $(git ls-files '*.go'))
