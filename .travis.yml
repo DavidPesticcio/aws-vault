@@ -6,11 +6,12 @@ go:
 os:
   - linux
   - osx
+  - windows
 
 env:
   - GO111MODULE=on
 
 script:
-  - diff -u <(echo -n) <(gofmt -d $(git ls-files '*.go'))
+  - test "$TRAVIS_OS_NAME" == "windows" || diff -u <(echo -n) <(gofmt -d $(git ls-files '*.go'))
   - go vet ./...
   - go test -race ./...
